@@ -14,40 +14,40 @@
 #     # include charts directory
 #     !/charts/podinfo/    
 
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: podinfo-helm
-  namespace: default
-spec:
-  prune: true    
-  interval: 1m0s
-  url: https://stefanprodan.github.io/podinfo
+# ---
+# apiVersion: source.toolkit.fluxcd.io/v1beta2
+# kind: HelmRepository
+# metadata:
+#   name: podinfo-helm
+#   namespace: default
+# spec:
+#   prune: true    
+#   interval: 1m0s
+#   url: https://stefanprodan.github.io/podinfo
 
 
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: podinfo-helm
-  namespace: default
-spec:
-  chart:
-    spec:
-      chart: podinfo
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: podinfo-helm
-        namespace: default
-      version: '>4.0.0'
-  prune: true      
-  interval: 10s
-  timeout: 5m
-  releaseName: helm-from-git
-  values:
-    logLevel: debug
-    replicaCount: 2
-    ui:
-      color: blue
+# ---
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: podinfo-helm
+#   namespace: default
+# spec:
+#   chart:
+#     spec:
+#       chart: podinfo
+#       reconcileStrategy: ChartVersion
+#       sourceRef:
+#         kind: HelmRepository
+#         name: podinfo-helm
+#         namespace: default
+#       version: '>4.0.0'
+#   prune: true      
+#   interval: 10s
+#   timeout: 5m
+#   releaseName: helm-from-git
+#   values:
+#     logLevel: debug
+#     replicaCount: 2
+#     ui:
+#       color: blue
