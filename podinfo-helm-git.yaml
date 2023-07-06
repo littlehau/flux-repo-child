@@ -21,6 +21,7 @@ metadata:
   name: podinfo-helm
   namespace: default
 spec:
+  prune: true    
   interval: 1m0s
   url: https://stefanprodan.github.io/podinfo
 
