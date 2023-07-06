@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   interval: 10s
-  url: https://github.com/littlehau/podinfo
+  url: https://github.com/stefanprodan/podinfo
   ref:
     branch: master
 ---
