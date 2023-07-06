@@ -1,60 +1,24 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
-metadata:
-  name: podinfo-helm-git
-  namespace: default
-spec:
-  interval: 10s
-  url: https://github.com/stefanprodan/podinfo
-  ref:
-    branch: master
-  ignore: |
-    # exclude all
-    /*
-    # include charts directory
-    !/charts/    
-
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: podinfo-helm-git
-  namespace: default
-spec:
-  chart:
-    spec:
-      chart: podinfo
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: GitRepository
-        name: podinfo-helm-git
-        namespace: default
-      version: '>4.0.0'    
-  interval: 10s
-  timeout: 5m
-  releaseName: helm-from-git
-  values:
-    logLevel: debug
-    replicaCount: 2
-    ui:
-      color: blue
-    
-
-# apiVersion: source.toolkit.fluxcd.io/v1beta2
-# kind: HelmRepository
+# apiVersion: source.toolkit.fluxcd.io/v1
+# kind: GitRepository
 # metadata:
-#   name: podinfo-helm
+#   name: podinfo-helm-git
 #   namespace: default
 # spec:
 #   interval: 10s
-#   url: https://stefanprodan.github.io/podinfo
-
+#   url: https://github.com/stefanprodan/podinfo
+#   ref:
+#     branch: master
+#   ignore: |
+#     # exclude all
+#     /*
+#     # include charts directory
+#     !/charts/    
 
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2beta1
 # kind: HelmRelease
 # metadata:
-#   name: podinfo-helm
+#   name: podinfo-helm-git
 #   namespace: default
 # spec:
 #   chart:
@@ -62,10 +26,10 @@ spec:
 #       chart: podinfo
 #       reconcileStrategy: ChartVersion
 #       sourceRef:
-#         kind: HelmRepository
-#         name: podinfo-helm
+#         kind: GitRepository
+#         name: podinfo-helm-git
 #         namespace: default
-#       version: '>4.0.0'      
+#       version: '>4.0.0'    
 #   interval: 10s
 #   timeout: 5m
 #   releaseName: helm-from-git
@@ -74,3 +38,39 @@ spec:
 #     replicaCount: 2
 #     ui:
 #       color: blue
+    
+
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: podinfo-helm
+  namespace: default
+spec:
+  interval: 10s
+  url: https://stefanprodan.github.io/podinfo
+
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo-helm
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: podinfo
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo-helm
+        namespace: default
+      version: '>4.0.0'      
+  interval: 10s
+  timeout: 5m
+  releaseName: helm-from-git
+  values:
+    logLevel: debug
+    replicaCount: 2
+    ui:
+      color: blue
