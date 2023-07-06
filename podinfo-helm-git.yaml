@@ -48,7 +48,6 @@ metadata:
   name: podinfo-helm
   namespace: default
 spec:
-  prune: true    
   interval: 10s
   url: https://stefanprodan.github.io/podinfo
 
@@ -69,7 +68,7 @@ spec:
         name: podinfo-helm
         namespace: default
       version: '>4.0.0'
-  # prune: true      
+  prune: true      
   interval: 10s
   timeout: 5m
   releaseName: helm-from-git
