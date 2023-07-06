@@ -67,8 +67,7 @@ spec:
         kind: HelmRepository
         name: podinfo-helm
         namespace: default
-      version: '>4.0.0'
-  prune: true      
+      version: '>4.0.0'      
   interval: 10s
   timeout: 5m
   releaseName: helm-from-git
