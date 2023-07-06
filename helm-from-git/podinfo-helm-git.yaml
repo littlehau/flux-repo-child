@@ -1,30 +1,67 @@
-# apiVersion: source.toolkit.fluxcd.io/v1
-# kind: GitRepository
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: podinfo-mine-fork
+  namespace: default
+spec:
+  interval: 10s
+  url: https://github.com/littlehau/podinfo
+  ref:
+    branch: master
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo-mine-fork
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: ./charts/podinfo
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: GitRepository
+        name: podinfo-mine-fork
+        namespace: default
+      version: '>4.0.0'    
+  interval: 10s
+  timeout: 5m
+  releaseName: helm-from-git
+  values:
+    logLevel: debug
+    replicaCount: 2
+    ui:
+      color: blue
+    
+
+# ---
+# apiVersion: source.toolkit.fluxcd.io/v1beta2
+# kind: HelmRepository
 # metadata:
-#   name: podinfo-mine-fork
+#   name: podinfo-helm
 #   namespace: default
 # spec:
 #   interval: 10s
-#   url: https://github.com/littlehau/podinfo
-#   ref:
-#     branch: master
+#   url: https://stefanprodan.github.io/podinfo
+
 
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2beta1
 # kind: HelmRelease
 # metadata:
-#   name: podinfo-mine-fork
+#   name: podinfo-helm
 #   namespace: default
 # spec:
 #   chart:
 #     spec:
-#       chart: ./charts/podinfo
+#       chart: podinfo
 #       reconcileStrategy: ChartVersion
 #       sourceRef:
-#         kind: GitRepository
-#         name: podinfo-mine-fork
+#         kind: HelmRepository
+#         name: podinfo-helm
 #         namespace: default
-#       version: '>4.0.0'    
+#       version: '>4.0.0'      
 #   interval: 10s
 #   timeout: 5m
 #   releaseName: helm-from-git
@@ -33,40 +70,3 @@
 #     replicaCount: 2
 #     ui:
 #       color: blue
-    
-
-# # ---
-# # apiVersion: source.toolkit.fluxcd.io/v1beta2
-# # kind: HelmRepository
-# # metadata:
-# #   name: podinfo-helm
-# #   namespace: default
-# # spec:
-# #   interval: 10s
-# #   url: https://stefanprodan.github.io/podinfo
-
-
-# # ---
-# # apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# # kind: HelmRelease
-# # metadata:
-# #   name: podinfo-helm
-# #   namespace: default
-# # spec:
-# #   chart:
-# #     spec:
-# #       chart: podinfo
-# #       reconcileStrategy: ChartVersion
-# #       sourceRef:
-# #         kind: HelmRepository
-# #         name: podinfo-helm
-# #         namespace: default
-# #       version: '>4.0.0'      
-# #   interval: 10s
-# #   timeout: 5m
-# #   releaseName: helm-from-git
-# #   values:
-# #     logLevel: debug
-# #     replicaCount: 2
-# #     ui:
-# #       color: blue
