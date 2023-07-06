@@ -1,40 +1,40 @@
-# apiVersion: source.toolkit.fluxcd.io/v1
-# kind: GitRepository
-# metadata:
-#   name: podinfo
-#   namespace: default
-# spec:
-#   interval: 10s
-#   url: https://github.com/stefanprodan/podinfo
-#   ref:
-#     branch: master
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: podinfo
-#   namespace: default
-# spec:
-#   interval: 10s
-#   targetNamespace: default
-#   sourceRef:
-#     kind: GitRepository
-#     name: podinfo
-#   path: "./kustomize"
-#   prune: true
-#   timeout: 1m
-#   patches:
-#     - patch: |-
-#         apiVersion: autoscaling/v2
-#         kind: HorizontalPodAutoscaler
-#         metadata:
-#           name: podinfo
-#         spec:
-#           scaleTargetRef:
-#             apiVersion: apps/v1
-#             kind: Deployment
-#             name: podinfo
-#           minReplicas: 2
-#           maxReplicas: 2
-#       target:
-#         kind: HorizontalPodAutoscaler   
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  interval: 10s
+  url: https://github.com/stefanprodan/podinfo
+  ref:
+    branch: master
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  interval: 10s
+  targetNamespace: default
+  sourceRef:
+    kind: GitRepository
+    name: podinfo
+  path: "./kustomize"
+  prune: true
+  timeout: 1m
+  patches:
+    - patch: |-
+        apiVersion: autoscaling/v2
+        kind: HorizontalPodAutoscaler
+        metadata:
+          name: podinfo
+        spec:
+          scaleTargetRef:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: podinfo
+          minReplicas: 2
+          maxReplicas: 2
+      target:
+        kind: HorizontalPodAutoscaler   
