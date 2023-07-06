@@ -1,13 +1,13 @@
-# apiVersion: source.toolkit.fluxcd.io/v1
-# kind: GitRepository
-# metadata:
-#   name: podinfo
-#   namespace: default
-# spec:
-#   interval: 10s
-#   url: https://github.com/littlehau/podinfo
-#   ref:
-#     branch: master
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: podinfo-mine-fork
+  namespace: default
+spec:
+  interval: 10s
+  url: https://github.com/littlehau/podinfo
+  ref:
+    branch: master
 
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2beta1
