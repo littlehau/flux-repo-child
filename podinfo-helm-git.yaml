@@ -12,7 +12,7 @@ spec:
     # exclude all
     /*
     # include charts directory
-    !/charts/podinfo    
+    !/charts/    
 
 
 ---
