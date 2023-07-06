@@ -25,7 +25,7 @@ spec:
   chart:
     spec:
       chart: podinfo
-      reconcileStrategy: ChartVersion
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: podinfo-helm-git
