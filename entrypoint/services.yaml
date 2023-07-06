@@ -3,7 +3,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: apps-from-git-helm
-  namespace: dev
+  namespace: default
 spec:
   interval: 10s
   # dependsOn:
@@ -12,7 +12,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: podinfo-child
-    namespace: dev
+    namespace: default
   path: ./helm-from-git
   prune: true
   wait: true
