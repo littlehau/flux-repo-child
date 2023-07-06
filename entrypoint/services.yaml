@@ -8,7 +8,7 @@ spec:
   interval: 10s
   dependsOn:
     - name: infra-controllers
-    - namespace: flux-system
+    - namespace: infra-controllers
   sourceRef:
     kind: GitRepository
     name: podinfo-child
