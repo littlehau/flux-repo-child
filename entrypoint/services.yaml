@@ -17,6 +17,7 @@ spec:
   prune: true
   wait: true
   timeout: 5m0s
+  targetNamespace: flux-system
 
 
 # # ---
