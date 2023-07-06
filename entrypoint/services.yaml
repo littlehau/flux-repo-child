@@ -6,9 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10s
-  # dependsOn:
-  #   - name: infra-controllers
-  #   - namespace: flux-system
+  dependsOn:
+    - name: infra-controllers
+    - namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: podinfo-child
