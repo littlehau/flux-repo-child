@@ -11,8 +11,8 @@ spec:
     name: podinfo-child
     namespace: dev
   dependsOn:
-    name: infra-controllers
-    namespace: flux-system
+    - name: infra-controllers
+      namespace: flux-system
   path: ./helm-from-git
   prune: true
   wait: true
