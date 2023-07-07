@@ -47,6 +47,11 @@ spec:
         metadata:
           name: podinfo-new
         spec:
+          scaleTargetRef:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: podinfo
+            namespace: dev
           minReplicas: 2
           maxReplicas: 2
           metrics:
