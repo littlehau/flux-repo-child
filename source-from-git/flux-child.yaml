@@ -29,27 +29,20 @@ spec:
         apiVersion: apps/v1
         kind: Deployment
         metadata:
-          name: podinfo-stefanprodan-podinfo
+          name: podinfo-oliver
       target:
         kind: Deployment
-    - patch: |-
-        apiVersion: v1
-        kind: Service
-        metadata:
-          name: podinfo-stefanprodan-podinfo
-      target:
-        kind: Service
     - patch: |-
         apiVersion: autoscaling/v2
         kind: HorizontalPodAutoscaler
         metadata:
-          name: podinfo-stefanprodan-podinfo
+          name: podinfo-oliver
         spec:
           scaleTargetRef:
             apiVersion: apps/v1
             kind: Deployment
-            name: podinfo
-          minReplicas: 1
-          maxReplicas: 1
+            name: podinfo-oliver
+          minReplicas: 2
+          maxReplicas: 2
       target:
         kind: HorizontalPodAutoscaler  
