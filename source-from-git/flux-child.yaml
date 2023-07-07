@@ -32,7 +32,7 @@ spec:
           name: podinfo-oliver
       target:
         kind: Deployment
-        name: podinfox
+        name: podinfo
     # - patch: |-
     #     apiVersion: autoscaling/v2
     #     kind: HorizontalPodAutoscaler
