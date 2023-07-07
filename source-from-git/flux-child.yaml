@@ -34,18 +34,15 @@ spec:
         kind: Deployment
         name: podinfo
         namespace: dev
-    # - patch: |-
-    #     apiVersion: autoscaling/v2
-    #     kind: HorizontalPodAutoscaler
-    #     metadata:
-    #       name: podinfo-oliver
-    #     spec:
-    #       scaleTargetRef:
-    #         apiVersion: apps/v1
-    #         kind: Deployment
-    #         name: podinfo-oliver
-    #       minReplicas: 2
-    #       maxReplicas: 2
-    #   target:
-    #     kind: HorizontalPodAutoscaler  
-    #     name: podinfo        
+    - patch: |-
+        apiVersion: autoscaling/v2
+        kind: HorizontalPodAutoscaler
+        metadata:
+          name: podinfo-new        
+        spec:
+          minReplicas: 3
+          maxReplicas: 3
+      target:
+        kind: HorizontalPodAutoscaler  
+        name: podinfo 
+        namespace: dev               
