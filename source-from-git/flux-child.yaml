@@ -20,6 +20,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: podinfo-stefanprodan-podinfo
+    namespace: dev
   path: "./kustomize"
   prune: true
   timeout: 1m
