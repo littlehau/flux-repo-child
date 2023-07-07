@@ -20,21 +20,22 @@ spec:
   sourceRef:
     kind: GitRepository
     name: podinfo-stefanprodan-podinfo
+    namespace: default
   path: "./kustomize"
   prune: true
   timeout: 1m
-  # patches:
-  #   - patch: |-
-  #       apiVersion: autoscaling/v2
-  #       kind: HorizontalPodAutoscaler
-  #       metadata:
-  #         name: podinfo
-  #       spec:
-  #         scaleTargetRef:
-  #           apiVersion: apps/v1
-  #           kind: Deployment
-  #           name: podinfo
-  #         minReplicas: 2
-  #         maxReplicas: 2
-  #     target:
-  #       kind: HorizontalPodAutoscaler   
+  patches:
+    - patch: |-
+        apiVersion: autoscaling/v2
+        kind: HorizontalPodAutoscaler
+        metadata:
+          name: podinfo
+        spec:
+          scaleTargetRef:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: podinfo
+          minReplicas: 2
+          maxReplicas: 2
+      target:
+        kind: HorizontalPodAutoscaler   
