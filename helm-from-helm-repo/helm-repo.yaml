@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: podinfo-helm
-  namespace: default
+  name: podinfo-helm-repo
+  namespace: dev
 spec:
   interval: 10s
   url: https://stefanprodan.github.io/podinfo
@@ -13,8 +13,8 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: podinfo-helm
-  namespace: default
+  name: podinfo-helm-repo
+  namespace: dev
 spec:
   chart:
     spec:
@@ -22,8 +22,8 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: podinfo-helm
-        namespace: default
+        name: podinfo-helm-repo
+        namespace: dev
       version: '>4.0.0'      
   interval: 10s
   timeout: 5m
