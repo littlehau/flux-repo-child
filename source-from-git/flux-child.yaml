@@ -24,16 +24,16 @@ spec:
   path: "./kustomize"
   prune: true
   timeout: 1m
-  # patches: 
-  #   - patch: |-
-  #       apiVersion: apps/v1
-  #       kind: Deployment
-  #       metadata:
-  #         name: podinfo-new
-  #     target:
-  #       kind: Deployment
-  #       name: podinfo
-  #       namespace: default
+  patches: 
+    - patch: |-
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: podinfo-new
+      target:
+        kind: Deployment
+        name: podinfo
+        namespace: dev
     # - patch: |-
     #     apiVersion: autoscaling/v2
     #     kind: HorizontalPodAutoscaler
