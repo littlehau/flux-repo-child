@@ -27,7 +27,8 @@ spec:
       version: '>4.0.0'      
   interval: 10s
   timeout: 5m
-  releaseName: helm-from-helm-repo
+  prune: true
+  releaseName: chart-from-helm-repo
   values:
     logLevel: debug
     replicaCount: 2
