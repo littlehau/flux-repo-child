@@ -40,9 +40,9 @@ spec:
         metadata:
           name: podinfo-new
         spec:
-          minReplicas: 3
-          maxReplicas: 3
+          minReplicas: 2
+          maxReplicas: 2
       target:
         kind: HorizontalPodAutoscaler  
-        name: podinfo 
+        name: podinfo-new
         # namespace: dev               
