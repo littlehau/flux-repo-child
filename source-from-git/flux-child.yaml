@@ -42,13 +42,13 @@ spec:
         spec:
           minReplicas: 3
           maxReplicas: 3
-        metrics:
-        - type: Resource
-          resource:
-            name: cpu
-            target:
-              type: Utilization
-              averageUtilization: 80          
+          metrics:
+          - type: Resource
+            resource:
+              name: cpu
+              target:
+                type: Utilization
+                averageUtilization: 80          
       target:
         kind: HorizontalPodAutoscaler  
         name: podinfo
