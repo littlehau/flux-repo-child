@@ -40,9 +40,9 @@ spec:
       target:
         kind: HorizontalPodAutoscaler   
     - patch: |-
-            apiVersion: apps/v1
-            kind: Deployment
-            metadata:
-              name: podinfo-stefanprodan-podinfo
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: podinfo-stefanprodan-podinfo
       target:
-        kind: Deployment           
+        kind: Deployment
