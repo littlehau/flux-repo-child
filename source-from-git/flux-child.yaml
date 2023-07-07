@@ -46,3 +46,11 @@ spec:
           name: podinfo-stefanprodan-podinfo
       target:
         kind: Deployment
+    - patch: |-
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: podinfo-stefanprodan-podinfo
+      target:
+        kind: Service
+
