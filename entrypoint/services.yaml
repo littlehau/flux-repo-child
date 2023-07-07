@@ -39,3 +39,24 @@ spec:
   prune: true
   wait: true
   timeout: 5m0s
+
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-from-git-source
+  namespace: flux-system
+spec:
+  interval: 10s
+  dependsOn:
+    - name: apps-from-git-helm
+      namespace: dev
+  sourceRef:
+    kind: GitRepository
+    name: podinfo-child
+    namespace: dev
+  path: ./source-from-git
+  prune: true
+  wait: true
+  timeout: 5m0s
