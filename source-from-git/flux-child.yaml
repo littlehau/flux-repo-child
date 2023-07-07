@@ -30,6 +30,7 @@ spec:
         kind: HorizontalPodAutoscaler
         metadata:
           name: podinfo
+          namespace: dev
         spec:
           scaleTargetRef:
             apiVersion: apps/v1
