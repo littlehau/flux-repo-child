@@ -25,14 +25,14 @@ spec:
   prune: true
   timeout: 1m
   patches: 
-    # - patch: |
-    #     - op: replace
-    #       path: /metadata/name
-    #       value: podinfo-new   
-    #   target:
-    #     kind: Deployment
-    #     name: podinfo
-    #     namespace: default
+    - patch: |
+        - op: replace
+          path: /metadata/name
+          value: podinfo-new   
+      target:
+        kind: Deployment
+        name: podinfo
+        namespace: default
     - patch: |
         - op: replace
           path: /metadata/name
