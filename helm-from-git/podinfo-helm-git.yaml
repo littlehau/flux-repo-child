@@ -23,7 +23,7 @@ spec:
       sourceRef:
         kind: GitRepository
         name: podinfo-mine-fork
-        namespace: default
+        namespace: dev
       version: '>4.0.0'    
   interval: 10s
   timeout: 5m
