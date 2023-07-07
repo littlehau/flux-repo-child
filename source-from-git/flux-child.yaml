@@ -34,6 +34,15 @@ spec:
     #     kind: Deployment
     #     name: podinfo
     #     namespace: default
+    - patch: |
+        - op: replace
+          path: /metadata/name
+          value: podinfo-new   
+      target:
+        kind: HorizontalPodAutoscaler  
+        name: podinfo
+        namespace: default          
+
     - patch: |-
         apiVersion: autoscaling/v2
         kind: HorizontalPodAutoscaler
