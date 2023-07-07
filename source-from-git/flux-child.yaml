@@ -32,6 +32,7 @@ spec:
           name: podinfo-oliver
       target:
         kind: Deployment
+        name: podinfo
     - patch: |-
         apiVersion: autoscaling/v2
         kind: HorizontalPodAutoscaler
@@ -46,3 +47,4 @@ spec:
           maxReplicas: 2
       target:
         kind: HorizontalPodAutoscaler  
+        name: podinfo        
