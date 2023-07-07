@@ -24,33 +24,32 @@ spec:
   path: "./kustomize"
   prune: true
   timeout: 1m
-  # patches:
-    # - patch: |-
-    #     apiVersion: autoscaling/v2
-    #     kind: HorizontalPodAutoscaler
-    #     metadata:
-    #       name: podinfo-stefanprodan-podinfo
-    #     spec:
-    #       scaleTargetRef:
-    #         apiVersion: apps/v1
-    #         kind: Deployment
-    #         name: podinfo
-    #       minReplicas: 1
-    #       maxReplicas: 1
-    #   target:
-    #     kind: HorizontalPodAutoscaler   
-    # - patch: |-
-    #     apiVersion: apps/v1
-    #     kind: Deployment
-    #     metadata:
-    #       name: podinfo-stefanprodan-podinfo
-    #   target:
-    #     kind: Deployment
-    # - patch: |-
-    #     apiVersion: v1
-    #     kind: Service
-    #     metadata:
-    #       name: podinfo-stefanprodan-podinfo
-    #   target:
-    #     kind: Service
-
+  patches: 
+    - patch: |-
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: podinfo-stefanprodan-podinfo
+      target:
+        kind: Deployment
+    - patch: |-
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: podinfo-stefanprodan-podinfo
+      target:
+        kind: Service
+    - patch: |-
+        apiVersion: autoscaling/v2
+        kind: HorizontalPodAutoscaler
+        metadata:
+          name: podinfo-stefanprodan-podinfo
+        spec:
+          scaleTargetRef:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: podinfo
+          minReplicas: 1
+          maxReplicas: 1
+      target:
+        kind: HorizontalPodAutoscaler  
