@@ -50,7 +50,7 @@ metadata:
 spec:
   interval: 10s
   dependsOn:
-    - name: apps-from-git-source
+    - name: apps-from-git-helm
       namespace: dev
   sourceRef:
     kind: GitRepository
