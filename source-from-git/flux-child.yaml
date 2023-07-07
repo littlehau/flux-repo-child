@@ -44,5 +44,5 @@ spec:
           maxReplicas: 2
       target:
         kind: HorizontalPodAutoscaler  
-        name: podinfo-new
-        # namespace: dev               
+        name: podinfo
+        namespace: default               
