@@ -25,15 +25,14 @@ spec:
   prune: true
   timeout: 1m
   patches: 
-    # - patch: |-
-    #     apiVersion: apps/v1
-    #     kind: Deployment
-    #     metadata:
-    #       name: podinfo-new
-    #   target:
-    #     kind: Deployment
-    #     name: podinfo
-    #     namespace: default
+    - patch: |
+        - op: replace
+          path: /metadata/name
+          value: podinfo-new   
+      target:
+        kind: Deployment
+        name: podinfo
+        namespace: default
     - patch: |
         - op: replace
           path: /metadata/name
@@ -46,11 +45,13 @@ spec:
     - patch: |-
         apiVersion: autoscaling/v2
         kind: HorizontalPodAutoscaler
-        metadata:
-          name: podinfo-new
         spec:
-          minReplicas: 3
-          maxReplicas: 3
+          scaleTargetRef:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: podinfo-new        
+          minReplicas: 2
+          maxReplicas: 2
           metrics:
           - type: Resource
             resource:
