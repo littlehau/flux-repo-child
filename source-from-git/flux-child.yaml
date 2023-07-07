@@ -16,7 +16,7 @@ metadata:
   namespace: default
 spec:
   interval: 10s
-  targetNamespace: default
+  # targetNamespace: default
   sourceRef:
     kind: GitRepository
     name: podinfo-stefanprodan-podinfo
