@@ -34,7 +34,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: podinfo-child
-    namespace: default
+    namespace: dev
   path: ./source-from-git
   prune: true
   wait: true
