@@ -24,10 +24,10 @@ spec:
         kind: HelmRepository
         name: podinfo-helm-repo
         namespace: dev
-      version: '>4.0.0'      
+      version: '6.3.0'      
   interval: 10s
   timeout: 5m
-  releaseName: chart2-from-helm-repo
+  releaseName: chart-from-helm-repo
   values:
     logLevel: debug
     replicaCount: 2
